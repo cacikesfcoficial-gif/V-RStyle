@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>V&R ReStyle | Segunda mano, primera Calidad</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         BARRA DE NAVEGACIÓN
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="logo-area">
+
+            <img src="logo.png" alt="Logo V&R ReStyle">
+
+            <div class="logo-text">
+                <span>V&R</span> ReStyle
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="#inicio" class="activo">Inicio</a>
+
+            <a href="#coleccion">Ropa disponible</a>
+
+            <a href="#nosotros">Nosotros</a>
+
+            <a href="#contacto">Contacto</a>
+
+        </nav>
+
+
+
+  
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         PORTADA PRINCIPAL
+    ========================== -->
+
+    <section id="inicio" class="hero">
+
+        <div class="hero-contenido">
+
+            <p class="etiqueta">
+                SEGUNDA MANO, PRIMERA CALIDAD
+            </p>
+
+            <h1>
+                <span>V&R</span> ReStyle
+            </h1>
+
+            <h2>
+                 Tu estilo.<br>
+    A tu alcance
+            </h2>
+
+            <p class="descripcion">
+                Encuentra ropa de segunda mano en muy buen estado,
+    con estilo y a precios accesibles..
+            </p>
+
+            <a href="#coleccion" class="boton">
+                VER ROPA DISPONIBLE
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        <div class="hero-logo">
+
+            <img src="logo.png" alt="V&R ReStyle">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+     ROPA DISPONIBLE
+========================================== -->
+
+<section id="coleccion" class="coleccion">
+
+    <div class="titulo-seccion">
+
+        <p>DESCUBRE</p>
+
+        <h2>Ropa disponible</h2>
+
+        <div class="decoracion">
+            <span></span>
+            ♡
+            <span></span>
+        </div>
+
+        <span>
+            Segunda mano, primera calidad.
+            <br>
+            Prendas seleccionadas en muy buen estado y a precios accesibles.
+        </span>
+
+    </div>
+
+
+    <!-- FILTROS DE CATEGORÍAS -->
+
+   <div class="filtros">
+
+    <button class="filtro activo"
+        onclick="filtrarProductos('todas', this)">
+        TODAS
+    </button>
+
+    <button class="filtro"
+        onclick="filtrarProductos('polera', this)">
+        POLERAS
+    </button>
+
+    <button class="filtro"
+        onclick="filtrarProductos('pantalon', this)">
+        PANTALONES
+    </button>
+
+    <button class="filtro"
+        onclick="filtrarProductos('chaqueta', this)">
+        CHAQUETAS
+    </button>
+
+
+    <button class="filtro"
+        onclick="filtrarProductos('accesorio', this)">
+        ACCESORIOS
+    </button>
+
+</div>
+
+    <!-- TARJETAS DE PRENDAS -->
+
+    <div class="productos">
+
+
+        <!-- PRENDA 1 -->
+
+        <article class="producto" data-categoria="polera">
+
+            <div class="imagen-producto">
+                <span>👕</span>
+
+
+
+            </div>
+
+            <div class="info-producto">
+
+                <p class="categoria-producto">
+                    POLERA
+                </p>
+
+                <h3>
+                    Polera básica
+                </h3>
+
+                <p class="descripcion-producto">
+                    Prenda en muy buen estado.
+                </p>
+
+                <div class="datos-producto">
+
+                    <span>
+                        Talla M
+                    </span>
+
+                    <strong>
+                        $5.000
+                    </strong>
+
+                </div>
+
+                <button 
+     class="boton-producto"
+    onclick="abrirProducto(
+        'VR-001',
+        'Polera básica',
+        'Polera',
+        'Talla M',
+        '$5.000',
+        'Prenda en muy buen estado.'
+    )">
+    VER PRENDA
+</button>
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRENDA 2 -->
+
+        <article class="producto" data-categoria="pantalon">
+
+            <div class="imagen-producto">
+
+                <span>👖</span>
+
+            
+
+            </div>
+
+            <div class="info-producto">
+
+                <p class="categoria-producto">
+                    PANTALÓN
+                </p>
+
+                <h3>
+                    Pantalón casual
+                </h3>
+
+                <p class="descripcion-producto">
+                    En excelente estado y listo para usar.
+                </p>
+
+                <div class="datos-producto">
+
+                    <span>
+                        Talla 40
+                    </span>
+
+                    <strong>
+                        $8.000
+                    </strong>
+
+                </div>
+
+                <button 
+    class="boton-producto"
+    onclick="abrirProducto(
+        'VR-002',
+        'Pantalón casual',
+        'Pantalón',
+        'Talla 40',
+        '$8.000',
+        'En excelente estado y listo para usar.'
+    )">
+    VER PRENDA
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRENDA 3 -->
+
+        <article class="producto" data-categoria="chaqueta">
+
+            <div class="imagen-producto">
+
+                <span>🧥</span>
+
+            
+
+            </div>
+
+            <div class="info-producto">
+
+                <p class="categoria-producto">
+                    CHAQUETA
+                </p>
+
+                <h3>
+                    Chaqueta casual
+                </h3>
+
+                <p class="descripcion-producto">
+                    Prenda única en muy buen estado.
+                </p>
+
+                <div class="datos-producto">
+
+                    <span>
+                        Talla L
+                    </span>
+
+                    <strong>
+                        $10.000
+                    </strong>
+
+                </div>
+
+                <button 
+    class="boton-producto"
+    onclick="abrirProducto(
+        'VR-003',
+        'Chaqueta casual',
+        'Chaqueta',
+        'Talla L',
+        '$10.000',
+        'Prenda única en muy buen estado.'
+    )">
+    VER PRENDA
+                </button>
+
+            </div>
+
+        </article>
+
+<!-- ==========================================
+     PRENDA 4 - EJEMPLO
+========================================== -->
+
+<article class="producto" data-categoria="polera">
+
+    <div class="imagen-producto">
+
+        <span>👕</span>
+
+    </div>
+
+
+    <div class="info-producto">
+
+        <p class="categoria-producto">
+            POLERA
+        </p>
+
+        <h3>
+            Polera deportiva
+        </h3>
+
+        <p class="descripcion-producto">
+            Prenda en muy buen estado.
+        </p>
+
+
+        <div class="datos-producto">
+
+            <span>
+                Talla L
+            </span>
+
+            <strong>
+                $4.000
+            </strong>
+
+        </div>
+
+
+        <button
+            class="boton-producto"
+            onclick="abrirProducto(
+                'VR-004',
+                'Polera deportiva',
+                'Polera',
+                'L',
+                '$4.000',
+                'Prenda en muy buen estado.'
+            )">
+
+            VER PRENDA
+
+        </button>
+
+    </div>
+
+</article>
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     NOSOTROS
+========================== -->
+
+<section id="nosotros" class="nosotros">
+
+    <div class="nosotros-contenido">
+
+        <div class="nosotros-titulo">
+
+            <p>
+                V&R RESTYLE
+            </p>
+
+            <h2>
+                Más que ropa,<br>
+                una nueva oportunidad.
+            </h2>
+
+        </div>
+
+
+        <div class="nosotros-texto">
+
+            <p>
+                En V&R ReStyle creemos que una prenda puede
+                seguir contando historias.
+            </p>
+
+            <p>
+                Por eso seleccionamos ropa de segunda mano
+                en muy buen estado y la ofrecemos a precios
+                accesibles.
+            </p>
+
+        </div>
+
+
+        <div class="caracteristicas">
+
+            <!-- CALIDAD -->
+
+            <div>
+
+                <span class="icono-caracteristica">
+                    ✓
+                </span>
+
+                <span>
+                    Prendas<br>
+                    seleccionadas
+                </span>
+
+            </div>
+
+
+            <!-- PRECIOS -->
+
+            <div>
+
+                <span class="icono-caracteristica">
+                    ◇
+                </span>
+
+                <span>
+                    Precios<br>
+                    accesibles
+                </span>
+
+            </div>
+
+
+            <!-- ESTILO -->
+
+            <div>
+
+                <span class="icono-caracteristica">
+                    ☆
+                </span>
+
+                <span>
+                    Estilo<br>
+                    para ti
+                </span>
+
+            </div>
+
+
+            <!-- WHATSAPP -->
+
+            <div>
+
+                <span class="icono-caracteristica">
+                    ♡
+                </span>
+
+                <span>
+                    Compra fácil<br>
+                    por WhatsApp
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTACTO -->
+
+    <div class="contacto-mini">
+
+        <p>
+            V&R RESTYLE
+        </p>
+
+        <h2>
+            ¿Buscas algo especial?
+        </h2>
+
+        <span>
+            Escríbenos y te ayudaremos a encontrar
+            la prenda que estás buscando.
+        </span>
+
+        <a href="#contacto" class="boton">
+            CONTACTARNOS
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+ <!-- =========================
+     CONTACTO
+========================== -->
+
+<section id="contacto" class="contacto">
+
+    <p>
+        V&R RESTYLE
+    </p>
+
+    <h2>
+        Hablemos
+    </h2>
+
+    <p>
+        ¿Tienes alguna pregunta sobre nuestras prendas?
+        ¿Buscas una talla o un estilo en particular?
+        Escríbenos y estaremos encantados de ayudarte.
+    </p>
+
+    <a
+        href="https://wa.me/56975379705?text=Hola%2C%20V%26R%20ReStyle.%20Quisiera%20consultar%20por%20una%20prenda."
+        target="_blank"
+        class="boton">
+
+        ESCRIBIRNOS
+        <span>→</span>
+
+    </a>
+
+</section>
+
+
+
+    <footer>
+
+    <div class="footer-logo">
+
+        <img src="logo.png" alt="V&R ReStyle">
+
+        <div class="footer-nombre">
+            <span>V&R</span> ReStyle
+        </div>
+
+    </div>
+
+    <p>
+        © 2026 V&R ReStyle. Todos los derechos reservados.
+    </p>
+
+    <div class="redes">
+
+    <span>Instagram</span>
+
+    <span>Facebook</span>
+
+    <span>TikTok</span>
+
+    <a href="https://wa.me/56975379705?text=Hola%2C%20V%26R%20ReStyle.%0A%0AMe%20gustar%C3%ADa%20consultar%20por%20las%20prendas%20disponibles."
+   target="_blank"
+   rel="noopener noreferrer">
+    WhatsApp
+</a>
+
+</div>
+
+</footer>
+
+<!-- =========================
+     VENTANA DEL PRODUCTO
+========================== -->
+
+<div id="ventana-producto" class="ventana-producto">
+
+    <div class="producto-modal">
+
+        <button class="cerrar-producto" onclick="cerrarProducto()">
+            ×
+        </button>
+
+        <div class="producto-imagen">
+
+            <span id="producto-icono">
+                👕
+            </span>
+
+        </div>
+
+        <div class="producto-informacion">
+
+            <p id="producto-categoria" class="etiqueta">
+    POLERA
+</p>
+
+<p id="producto-codigo" class="producto-codigo">
+    CÓDIGO VR-001
+</p>
+
+<h2 id="producto-nombre">
+    Polera básica
+</h2>
+            <p id="producto-descripcion">
+                Prenda en muy buen estado.
+            </p>
+
+            <div class="producto-datos">
+
+                <div>
+                    <span>TALLA</span>
+                    <strong id="producto-talla">
+                        M
+                    </strong>
+                </div>
+
+                <div>
+                    <span>PRECIO</span>
+                    <strong id="producto-precio">
+                        $5.000
+                
+                </div>
+
+            </div>
+
+            <div class="producto-estado">
+
+                
+            </div>
+
+            <button 
+                id="boton-whatsapp"
+                class="boton-whatsapp">
+                ME INTERESA
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>
