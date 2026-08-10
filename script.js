@@ -15,7 +15,8 @@ function abrirProducto(
     categoria,
     talla,
     precio,
-    descripcion
+    descripcion,
+    fotos = []
 ) {
 
     // Mostrar información de la prenda
