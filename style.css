@@ -1706,4 +1706,54 @@ footer > p {
         object-fit: contain;
     }
 
+}/* =========================================
+   PRODUCTO EN CELULARES
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .producto-modal {
+        width: 94vw !important;
+        max-width: 94vw !important;
+        max-height: 92vh;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        overflow-y: auto;
+    }
+
+    /* IMAGEN GRANDE */
+    .producto-imagen {
+        width: 100% !important;
+        height: 360px !important;
+        min-height: 360px !important;
+    }
+
+    #producto-imagen-principal {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+    }
+
+    /* INFORMACIÓN */
+    .producto-informacion {
+        width: 100% !important;
+        padding: 24px !important;
+        box-sizing: border-box;
+    }
+
+    .producto-informacion h2 {
+        font-size: 25px !important;
+    }
+
+    /* DATOS TALLA / PRECIO */
+    .producto-datos {
+        width: 100%;
+    }
+
+    /* BOTÓN */
+    .producto-informacion .boton-whatsapp {
+        width: 100%;
+    }
+
 }
