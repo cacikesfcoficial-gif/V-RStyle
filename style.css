@@ -1706,54 +1706,85 @@ footer > p {
         object-fit: contain;
     }
 
-}/* =========================================
-   PRODUCTO EN CELULARES
+/* =========================================
+   V&R RESTYLE - MODAL EN CELULARES
    ========================================= */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
-    .producto-modal {
+    #ventana-producto .producto-modal {
         width: 94vw !important;
         max-width: 94vw !important;
-        max-height: 92vh;
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        overflow-y: auto;
+        height: auto !important;
+        max-height: 94vh !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        grid-template-columns: none !important;
+
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
     }
 
-    /* IMAGEN GRANDE */
-    .producto-imagen {
+    /* IMAGEN */
+    #ventana-producto .producto-imagen {
         width: 100% !important;
-        height: 360px !important;
-        min-height: 360px !important;
+        height: 330px !important;
+        min-height: 330px !important;
+
+        flex: none !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
-    #producto-imagen-principal {
+    #ventana-producto #producto-imagen-principal {
         width: 100% !important;
         height: 100% !important;
+
         object-fit: contain !important;
         object-position: center !important;
     }
 
     /* INFORMACIÓN */
-    .producto-informacion {
+    #ventana-producto .producto-informacion {
         width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+
         padding: 24px !important;
-        box-sizing: border-box;
+        box-sizing: border-box !important;
+
+        flex: none !important;
     }
 
-    .producto-informacion h2 {
+    #ventana-producto .producto-informacion h2 {
         font-size: 25px !important;
+        margin-bottom: 10px !important;
     }
 
-    /* DATOS TALLA / PRECIO */
-    .producto-datos {
-        width: 100%;
+    #ventana-producto .producto-informacion p {
+        margin-bottom: 12px !important;
     }
 
-    /* BOTÓN */
-    .producto-informacion .boton-whatsapp {
-        width: 100%;
+    /* TALLA Y PRECIO */
+    #ventana-producto .producto-datos {
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
+    /* BOTÓN ME INTERESA */
+    #ventana-producto .boton-whatsapp {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* CERRAR */
+    #ventana-producto .cerrar-producto {
+        z-index: 20 !important;
+    }
+
+}
 }
