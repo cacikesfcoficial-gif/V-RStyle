@@ -165,12 +165,8 @@
 
         <article class="producto" data-categoria="polera">
 
-            <div class="producto-imagen">
-
-    <img src="VR-001-1.jpg" alt="Polera básica">
-
-</div>
-
+            <div class="imagen-producto">
+                <img src="imagenes/VR-001-1.jpg" alt="Polera básica">
             </div>
 
             <div class="info-producto">
@@ -207,11 +203,11 @@
         'Polera',
         'Talla M',
         '$5.000',
-        'Prenda en muy buen estado.'
+        'Prenda en muy buen estado.',
+        ['imagenes/VR-001-1.jpg','imagenes/VR-001-2.jpg','imagenes/VR-001-3.jpg','imagenes/VR-001-4.jpg']
     )">
     VER PRENDA
 </button>
-                </button>
 
             </div>
 
@@ -558,7 +554,7 @@
         target="_blank"
         class="boton">
 
-        ESCRIBENOS
+        ESCRIBIRNOS
         <span>→</span>
 
     </a>
@@ -609,69 +605,38 @@
 
     <div class="producto-modal">
 
-        <button class="cerrar-producto" onclick="cerrarProducto()">
-            ×
-        </button>
+        <button class="cerrar-producto" onclick="cerrarProducto()">×</button>
 
         <div class="producto-imagen">
-
-           <span id="producto-icono">
-    👕
-</span>
-
+            <button class="flecha-imagen izquierda" onclick="cambiarImagen(-1)" aria-label="Imagen anterior">‹</button>
+            <img id="producto-imagen-principal" src="" alt="Fotografía del producto">
+            <button class="flecha-imagen derecha" onclick="cambiarImagen(1)" aria-label="Imagen siguiente">›</button>
+            <div id="indicadores-imagenes" class="indicadores-imagenes"></div>
         </div>
 
         <div class="producto-informacion">
-
-            <p id="producto-categoria" class="etiqueta">
-    POLERA
-</p>
-
-<p id="producto-codigo" class="producto-codigo">
-    CÓDIGO VR-001
-</p>
-
-<h2 id="producto-nombre">
-    Polera básica
-</h2>
-            <p id="producto-descripcion">
-                Prenda en muy buen estado.
-            </p>
+            <p id="producto-categoria" class="etiqueta">POLERA</p>
+            <p id="producto-codigo" class="producto-codigo">CÓDIGO VR-001</p>
+            <h2 id="producto-nombre">Polera básica</h2>
+            <p id="producto-descripcion">Prenda en muy buen estado.</p>
 
             <div class="producto-datos">
-
                 <div>
                     <span>TALLA</span>
-                    <strong id="producto-talla">
-                        M
-                    </strong>
+                    <strong id="producto-talla">M</strong>
                 </div>
-
                 <div>
                     <span>PRECIO</span>
-                    <strong id="producto-precio">
-                        $5.000
-                
+                    <strong id="producto-precio">$5.000</strong>
                 </div>
-
             </div>
 
-            <div class="producto-estado">
-
-                
-            </div>
-
-            <button 
-                id="boton-whatsapp"
-                class="boton-whatsapp">
-                ME INTERESA
-            </button>
-
+            <button id="boton-whatsapp" class="boton-whatsapp">ME INTERESA</button>
         </div>
-
     </div>
 
 </div>
+
 <script src="script.js"></script>
 
 </body>
