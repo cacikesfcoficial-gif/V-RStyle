@@ -1689,4 +1689,21 @@ footer > p {
 .boton-producto:hover {
     background: #d4af37;
     color: #111111;
+}/* ==============================
+   PRODUCTO EN CELULARES
+   ============================== */
+
+@media (max-width: 768px) {
+
+    .producto-imagen {
+        width: 100%;
+        height: 400px;
+    }
+
+    #producto-imagen-principal {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
 }
