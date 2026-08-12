@@ -62,5 +62,38 @@ window.PRODUCTOS = [
             "imagenes/VR-004-3.jpg",
             "imagenes/VR-004-4.jpg"
         ]
+    },
+    {
+        "codigo": "VR-005",
+        "nombre": "hombre",
+        "genero": "hombre",
+        "categoria": "polera",
+        "talla": "1",
+        "precio": "$1",
+        "estado": "Muy buen estado",
+        "descripcion": "p",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-006",
+        "nombre": "mujer",
+        "genero": "mujer",
+        "categoria": "polera",
+        "talla": "2",
+        "precio": "$2",
+        "estado": "Muy buen estado",
+        "descripcion": "p",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-007",
+        "nombre": "niño",
+        "genero": "nino",
+        "categoria": "polera",
+        "talla": "3",
+        "precio": "$3",
+        "estado": "Muy buen estado",
+        "descripcion": "p",
+        "imagenes": []
     }
 ];
