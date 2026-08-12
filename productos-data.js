@@ -62,5 +62,137 @@ window.PRODUCTOS = [
             "imagenes/VR-004-3.jpg",
             "imagenes/VR-004-4.jpg"
         ]
+    },
+    {
+        "codigo": "VR-005",
+        "nombre": "",
+        "genero": "mujer",
+        "categoria": "polera",
+        "talla": "XXXL",
+        "precio": "$5.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Polera en muy buen estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-006",
+        "nombre": "",
+        "genero": "hombre",
+        "categoria": "pantalon",
+        "talla": "XL",
+        "precio": "$6.500",
+        "estado": "Excelente estado",
+        "descripcion": "Pantalón en excelente estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-007",
+        "nombre": "",
+        "genero": "hombre",
+        "categoria": "chaqueta",
+        "talla": "L",
+        "precio": "$7.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Chaqueta en muy buen estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-008",
+        "nombre": "",
+        "genero": "todos",
+        "categoria": "accesorio",
+        "talla": "39",
+        "precio": "$8.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Reloj negro muy elgante y atractivo",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-009",
+        "nombre": "",
+        "genero": "todos",
+        "categoria": "polera",
+        "talla": "XXXL",
+        "precio": "$9.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Polera en muy buen estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-010",
+        "nombre": "",
+        "genero": "todos",
+        "categoria": "pantalon",
+        "talla": "XL",
+        "precio": "$10.500",
+        "estado": "Excelente estado",
+        "descripcion": "Pantalón en excelente estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-011",
+        "nombre": "",
+        "genero": "todos",
+        "categoria": "chaqueta",
+        "talla": "L",
+        "precio": "$11.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Chaqueta en muy buen estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-012",
+        "nombre": "",
+        "genero": "mujer",
+        "categoria": "accesorio",
+        "talla": "40",
+        "precio": "$12.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Reloj negro muy elgante y atractivo",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-013",
+        "nombre": "",
+        "genero": "hombre",
+        "categoria": "polera",
+        "talla": "XXXL",
+        "precio": "$13.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Polera en muy buen estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-014",
+        "nombre": "",
+        "genero": "hombre",
+        "categoria": "pantalon",
+        "talla": "XL",
+        "precio": "$14.500",
+        "estado": "Excelente estado",
+        "descripcion": "Pantalón en excelente estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-015",
+        "nombre": "",
+        "genero": "todos",
+        "categoria": "chaqueta",
+        "talla": "L",
+        "precio": "$15.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Chaqueta en muy buen estado.",
+        "imagenes": []
+    },
+    {
+        "codigo": "VR-016",
+        "nombre": "",
+        "genero": "mujer",
+        "categoria": "accesorio",
+        "talla": "41",
+        "precio": "$16.500",
+        "estado": "Muy buen estado",
+        "descripcion": "Reloj negro muy elgante y atractivo",
+        "imagenes": []
     }
 ];
