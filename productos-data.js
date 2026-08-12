@@ -2,10 +2,10 @@ window.PRODUCTOS = [
     {
         "codigo": "VR-001",
         "nombre": "Polera",
-        "genero": "hombre",
+        "genero": "todos",
         "categoria": "polera",
-        "talla": "1",
-        "precio": "$1",
+        "talla": "XXXL",
+        "precio": "$1.500",
         "estado": "Muy buen estado",
         "descripcion": "Polera en muy buen estado.",
         "imagenes": [
@@ -18,10 +18,10 @@ window.PRODUCTOS = [
     {
         "codigo": "VR-002",
         "nombre": "Pantalon",
-        "genero": "mujer",
+        "genero": "todos",
         "categoria": "pantalon",
-        "talla": "1",
-        "precio": "$1",
+        "talla": "XL",
+        "precio": "$2.500",
         "estado": "Excelente estado",
         "descripcion": "Pantalón en excelente estado.",
         "imagenes": [
@@ -34,10 +34,10 @@ window.PRODUCTOS = [
     {
         "codigo": "VR-003",
         "nombre": "Chaqueta",
-        "genero": "nino",
+        "genero": "todos",
         "categoria": "chaqueta",
-        "talla": "1",
-        "precio": "$1",
+        "talla": "L",
+        "precio": "$3.500",
         "estado": "Muy buen estado",
         "descripcion": "Chaqueta en muy buen estado.",
         "imagenes": [
@@ -52,8 +52,8 @@ window.PRODUCTOS = [
         "nombre": "Reloj",
         "genero": "todos",
         "categoria": "accesorio",
-        "talla": "1",
-        "precio": "$1",
+        "talla": "38",
+        "precio": "$4.500",
         "estado": "Muy buen estado",
         "descripcion": "Reloj negro muy elgante y atractivo",
         "imagenes": [
@@ -62,153 +62,5 @@ window.PRODUCTOS = [
             "imagenes/VR-004-3.jpg",
             "imagenes/VR-004-4.jpg"
         ]
-    },
-    {
-        "codigo": "VR-005",
-        "nombre": "polera manga corta",
-        "genero": "hombre",
-        "categoria": "polera",
-        "talla": "1",
-        "precio": "$1",
-        "estado": "Muy buen estado",
-        "descripcion": "Polera en muy buen estado.",
-        "imagenes": [
-            "imagenes/VR-005-1.jpg",
-            "imagenes/VR-005-2.jpg",
-            "imagenes/VR-005-3.jpg",
-            "imagenes/VR-005-4.jpg"
-        ]
-    },
-    {
-        "codigo": "VR-006",
-        "nombre": "Pantalon",
-        "genero": "mujer",
-        "categoria": "pantalon",
-        "talla": "2",
-        "precio": "$3",
-        "estado": "Muy buen estado",
-        "descripcion": "Pantalón en excelente estado.",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-007",
-        "nombre": "Polera",
-        "genero": "hombre",
-        "categoria": "polera",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-008",
-        "nombre": "Pantalon",
-        "genero": "mujer",
-        "categoria": "pantalon",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-009",
-        "nombre": "Chaqueta",
-        "genero": "nino",
-        "categoria": "chaqueta",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-010",
-        "nombre": "Reloj",
-        "genero": "todos",
-        "categoria": "accesorio",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-011",
-        "nombre": "polera manga corta",
-        "genero": "hombre",
-        "categoria": "polera",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-012",
-        "nombre": "Pantalon",
-        "genero": "mujer",
-        "categoria": "pantalon",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-013",
-        "nombre": "Polera",
-        "genero": "hombre",
-        "categoria": "polera",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-014",
-        "nombre": "Gorro",
-        "genero": "mujer",
-        "categoria": "pantalon",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-015",
-        "nombre": "Guantes",
-        "genero": "nino",
-        "categoria": "chaqueta",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-016",
-        "nombre": "Reloj",
-        "genero": "todos",
-        "categoria": "accesorio",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
-    },
-    {
-        "codigo": "VR-017",
-        "nombre": "polera manga corta",
-        "genero": "hombre",
-        "categoria": "polera",
-        "talla": "1",
-        "precio": "$5",
-        "estado": "Muy buen estado",
-        "descripcion": "m",
-        "imagenes": []
     }
 ];
