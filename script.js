@@ -239,9 +239,18 @@ function prepararZoomImagen() {
     if (!imagen || !contenedor) return;
 
     nivelZoom = 1;
-    let pinchStartDistance = 0;
-    let pinchStartZoom = 1;
-    let lastTap = 0;
+
+    // Evita registrar los eventos nuevamente al cambiar de foto.
+    if (contenedor.dataset.zoomPreparado === "true") {
+        resetearZoomProducto();
+        return;
+    }
+    contenedor.dataset.zoomPreparado = "true";
+
+    const punteros = new Map();
+    let distanciaInicial = 0;
+    let zoomInicial = 1;
+    let ultimoToque = 0;
 
     function esMovil() {
         return window.matchMedia("(max-width: 900px)").matches;
@@ -257,15 +266,18 @@ function prepararZoomImagen() {
         imagen.style.transform = "scale(" + nivelZoom + ")";
     }
 
-    function resetZoom() {
+    function resetear() {
         nivelZoom = 1;
-        pinchStartDistance = 0;
+        distanciaInicial = 0;
+        punteros.clear();
         imagen.classList.remove("zoom-activo");
         imagen.style.transformOrigin = "center center";
         imagen.style.transform = "scale(1)";
     }
 
-    // PC: movimiento + rueda.
+    window.resetearZoomProducto = resetear;
+
+    // PC: conserva exactamente el comportamiento que ya funciona.
     contenedor.addEventListener("mousemove", function (e) {
         if (esMovil() || !imagen.src) return;
         aplicarZoom(e.clientX, e.clientY);
@@ -273,69 +285,100 @@ function prepararZoomImagen() {
 
     contenedor.addEventListener("wheel", function (e) {
         if (esMovil()) return;
+
         e.preventDefault();
-        nivelZoom = Math.max(1, Math.min(5, nivelZoom + (e.deltaY < 0 ? 0.5 : -0.5)));
+
+        nivelZoom = Math.max(
+            1,
+            Math.min(5, nivelZoom + (e.deltaY < 0 ? 0.5 : -0.5))
+        );
+
         aplicarZoom(e.clientX, e.clientY);
     }, { passive: false });
 
     contenedor.addEventListener("mouseleave", function () {
-        if (!esMovil()) resetZoom();
+        if (!esMovil()) resetear();
     });
 
-    // CELULAR: doble toque + pellizco.
-    contenedor.addEventListener("touchstart", function (e) {
+    // CELULAR: Pointer Events.
+    // Es más fiable que touchstart/touchmove en Chrome móvil.
+    contenedor.addEventListener("pointerdown", function (e) {
         if (!esMovil()) return;
 
-        if (e.touches.length === 2) {
-            e.preventDefault();
-            const dx = e.touches[0].clientX - e.touches[1].clientX;
-            const dy = e.touches[0].clientY - e.touches[1].clientY;
-            pinchStartDistance = Math.hypot(dx, dy);
-            pinchStartZoom = nivelZoom;
-            return;
-        }
+        e.preventDefault();
+        punteros.set(e.pointerId, {
+            x: e.clientX,
+            y: e.clientY
+        });
 
-        if (e.touches.length === 1) {
-            const now = Date.now();
-            const touch = e.touches[0];
+        if (punteros.size === 1) {
+            const ahora = Date.now();
 
-            if (now - lastTap < 350) {
-                e.preventDefault();
+            // Doble toque.
+            if (ahora - ultimoToque < 350) {
                 nivelZoom = nivelZoom > 1 ? 1 : 2.5;
-                aplicarZoom(touch.clientX, touch.clientY);
+                aplicarZoom(e.clientX, e.clientY);
             }
 
-            lastTap = now;
+            ultimoToque = ahora;
         }
+
+        if (punteros.size === 2) {
+            const puntos = Array.from(punteros.values());
+            distanciaInicial = Math.hypot(
+                puntos[0].x - puntos[1].x,
+                puntos[0].y - puntos[1].y
+            );
+            zoomInicial = nivelZoom;
+        }
+
+        try {
+            contenedor.setPointerCapture(e.pointerId);
+        } catch (_) {}
     }, { passive: false });
 
-    contenedor.addEventListener("touchmove", function (e) {
-        if (!esMovil() || e.touches.length !== 2 || !pinchStartDistance) return;
+    contenedor.addEventListener("pointermove", function (e) {
+        if (!esMovil() || !punteros.has(e.pointerId)) return;
 
         e.preventDefault();
 
-        const dx = e.touches[0].clientX - e.touches[1].clientX;
-        const dy = e.touches[0].clientY - e.touches[1].clientY;
-        const distancia = Math.hypot(dx, dy);
+        punteros.set(e.pointerId, {
+            x: e.clientX,
+            y: e.clientY
+        });
 
-        nivelZoom = Math.max(
-            1,
-            Math.min(4, pinchStartZoom * (distancia / pinchStartDistance))
-        );
+        if (punteros.size === 2 && distanciaInicial > 0) {
+            const puntos = Array.from(punteros.values());
 
-        const centroX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-        const centroY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-        aplicarZoom(centroX, centroY);
+            const distanciaActual = Math.hypot(
+                puntos[0].x - puntos[1].x,
+                puntos[0].y - puntos[1].y
+            );
+
+            nivelZoom = Math.max(
+                1,
+                Math.min(4, zoomInicial * (distanciaActual / distanciaInicial))
+            );
+
+            const centroX = (puntos[0].x + puntos[1].x) / 2;
+            const centroY = (puntos[0].y + puntos[1].y) / 2;
+
+            aplicarZoom(centroX, centroY);
+        }
     }, { passive: false });
 
-    contenedor.addEventListener("touchend", function (e) {
+    function terminarPuntero(e) {
         if (!esMovil()) return;
-        if (e.touches.length < 2) pinchStartDistance = 0;
-    }, { passive: false });
 
-    contenedor.addEventListener("touchcancel", function () {
-        pinchStartDistance = 0;
-    }, { passive: false });
+        punteros.delete(e.pointerId);
+
+        if (punteros.size < 2) {
+            distanciaInicial = 0;
+        }
+    }
+
+    contenedor.addEventListener("pointerup", terminarPuntero, { passive: false });
+    contenedor.addEventListener("pointercancel", terminarPuntero, { passive: false });
 }
 
 function interesarPrenda(codigo, nombre, categoria, talla, precio) {
