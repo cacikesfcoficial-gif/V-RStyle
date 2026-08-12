@@ -4,7 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V&R ReStyle | Segunda mano, primera Calidad</title>
-    <link rel="stylesheet" href="style.css?v=20260812-2">
+    <link rel="stylesheet" href="style.css">
+
+<style id="filtros-genero-vr">
+    .filtros-genero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin: 34px auto 12px;
+        flex-wrap: wrap;
+    }
+
+    .genero-card {
+        min-width: 130px;
+        padding: 14px 24px;
+        border: 1px solid #d8ad3c;
+        background: #fff;
+        color: #111;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: .25s ease;
+    }
+
+    .genero-card:hover,
+    .genero-card.activo {
+        background: #111;
+        color: #d8ad3c;
+        border-color: #111;
+    }
+
+    .filtro-seleccionado {
+        display: block;
+        min-height: 18px;
+        margin: 10px 0 22px;
+        text-align: center;
+        color: #b58a20;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+
+    @media (max-width: 600px) {
+        .filtros-genero {
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .genero-card {
+            min-width: 92px;
+            padding: 12px 12px;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        .filtro-seleccionado {
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+    }
+</style>
+
+<style id="video-vr-final">
+#inicio.hero .hero-video-panel{
+    position:relative!important;
+    overflow:hidden!important;
+    background:#000!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+}
+#inicio.hero .hero-video{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    object-position:center!important;
+    background:#000!important;
+}
+@media (max-width:768px){
+    #inicio.hero .hero-video-panel{
+        width:100%!important;
+        height:min(78vh,620px)!important;
+        min-height:390px!important;
+    }
+    #inicio.hero .hero-video{object-fit:cover!important;}
+}
+</style>
+<script>
+(function(){
+  function setupVideo(){
+    const video=document.getElementById("heroVideo");
+    if(!video) return;
+    const mobile=window.matchMedia("(max-width: 768px)").matches;
+    const sources=video.querySelectorAll("source");
+    const desired=mobile ? "videos/VR-ReStyle-presentacion-mobile.mp4"
+                         : "videos/VR-ReStyle-presentacion-desktop.mp4";
+    let current=video.getAttribute("data-video-src");
+    if(current!==desired){
+      video.pause();
+      sources[0].src=desired;
+      sources[1].src=desired;
+      video.setAttribute("data-video-src",desired);
+      video.load();
+    }
+    video.muted=true;
+    video.defaultMuted=true;
+    video.setAttribute("muted","");
+    video.setAttribute("playsinline","");
+    video.setAttribute("webkit-playsinline","true");
+    const play=()=>{const p=video.play(); if(p&&p.catch)p.catch(()=>{});};
+    video.addEventListener("loadeddata",play,{once:true});
+    video.addEventListener("canplay",play,{once:true});
+    play();
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",setupVideo);
+  else setupVideo();
+  window.addEventListener("resize",setupVideo);
+  window.addEventListener("load",setupVideo,{once:true});
+  ["touchstart","pointerdown"].forEach(e=>document.addEventListener(e,()=>{
+    const v=document.getElementById("heroVideo"); if(v){v.muted=true;v.play().catch(()=>{});}
+  },{once:true,passive:true}));
+})();
+</script>
 </head>
 
 <body>
@@ -34,18 +160,18 @@
     <section id="inicio" class="hero">
 
         <div class="hero-video-panel">
-            <video class="hero-video"
-               id="hero-video"
-               autoplay
-               muted
-               defaultmuted
-               loop
-               playsinline
-               webkit-playsinline
-               preload="auto"
-               disablepictureinpicture
-               controlslist="nodownload nofullscreen noremoteplayback"
-               aria-label="Presentación V&R ReStyle"></video>
+            <video id="heroVideo"
+                   class="hero-video"
+                   autoplay
+                   muted
+                   loop
+                   playsinline
+                   webkit-playsinline="true"
+                   preload="auto"
+                   aria-label="Presentación V&R ReStyle">
+                <source id="heroVideoDesktop" src="videos/VR-ReStyle-presentacion-desktop.mp4" type="video/mp4">
+                <source id="heroVideoMobile" src="videos/VR-ReStyle-presentacion-mobile.mp4" type="video/mp4">
+            </video>
         </div>
 
         <div class="hero-contenido">
@@ -94,30 +220,29 @@
             </span>
         </div>
 
-        <div class="filtro-genero" aria-label="Seleccionar público">
-            <button type="button" class="genero-boton activo" onclick="filtrarGenero('todas', this)">TODAS</button>
-            <button type="button" class="genero-boton" onclick="filtrarGenero('mujer', this)">MUJER</button>
-            <button type="button" class="genero-boton" onclick="filtrarGenero('hombre', this)">HOMBRE</button>
-            <button type="button" class="genero-boton" onclick="filtrarGenero('nino', this)">NIÑO</button>
+        <div class="filtros-genero" aria-label="Filtrar por público">
+            <button type="button" class="genero-card activo"
+                    onclick="filtrarGenero('todas', this)">TODAS</button>
+            <button type="button" class="genero-card"
+                    onclick="filtrarGenero('mujer', this)">MUJER</button>
+            <button type="button" class="genero-card"
+                    onclick="filtrarGenero('hombre', this)">HOMBRE</button>
+            <button type="button" class="genero-card"
+                    onclick="filtrarGenero('nino', this)">NIÑO</button>
         </div>
 
-        <div id="filtro-genero-titulo" class="filtro-genero-titulo">
+        <span id="filtro-seleccionado" class="filtro-seleccionado">
             MOSTRANDO TODAS LAS PRENDAS
-        </div>
+        </span>
 
         <div class="filtros">
-            <button class="filtro activo" data-categoria="todas" onclick="filtrarProductos('todas', this)">TODAS</button>
-            <button class="filtro" data-categoria="polera" onclick="filtrarProductos('polera', this)">POLERAS</button>
-            <button class="filtro" data-categoria="pantalon" onclick="filtrarProductos('pantalon', this)">PANTALONES</button>
-            <button class="filtro" data-categoria="chaqueta" onclick="filtrarProductos('chaqueta', this)">CHAQUETAS</button>
-            <button class="filtro" data-categoria="accesorio" onclick="filtrarProductos('accesorio', this)">ACCESORIOS</button>
+            <button type="button" class="filtro activo" onclick="filtrarProductos('todas', this)">TODAS</button>
+            <button type="button" class="filtro" onclick="filtrarProductos('polera', this)">POLERAS</button>
+            <button type="button" class="filtro" onclick="filtrarProductos('pantalon', this)">PANTALONES</button>
+            <button type="button" class="filtro" onclick="filtrarProductos('chaqueta', this)">CHAQUETAS</button>
+            <button type="button" class="filtro" onclick="filtrarProductos('accesorio', this)">ACCESORIOS</button>
         </div>
 
-        <!--
-            LAS PRENDAS SE CARGAN AUTOMÁTICAMENTE DESDE script.js
-            Para cambiar nombre, talla, precio, descripción o fotos,
-            solo modifica el objeto correspondiente en la lista PRODUCTOS.
-        -->
         <div id="productos" class="productos"></div>
     </section>
 
@@ -261,6 +386,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=20260812-2"></script>
+    <script src="productos-data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
