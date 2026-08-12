@@ -91,6 +91,17 @@
             </span>
         </div>
 
+        <div class="filtro-genero" aria-label="Seleccionar público">
+            <button type="button" class="genero-boton activo" onclick="filtrarGenero('todas', this)">TODAS</button>
+            <button type="button" class="genero-boton" onclick="filtrarGenero('mujer', this)">MUJER</button>
+            <button type="button" class="genero-boton" onclick="filtrarGenero('hombre', this)">HOMBRE</button>
+            <button type="button" class="genero-boton" onclick="filtrarGenero('nino', this)">NIÑO</button>
+        </div>
+
+        <div id="filtro-genero-titulo" class="filtro-genero-titulo">
+            MOSTRANDO TODAS LAS PRENDAS
+        </div>
+
         <div class="filtros">
             <button class="filtro activo" onclick="filtrarProductos('todas', this)">TODAS</button>
             <button class="filtro" onclick="filtrarProductos('polera', this)">POLERAS</button>
@@ -99,138 +110,12 @@
             <button class="filtro" onclick="filtrarProductos('accesorio', this)">ACCESORIOS</button>
         </div>
 
-        <div class="productos">
-
-            <!-- PRENDA 1 -->
-            <article class="producto" data-categoria="polera" role="button" tabindex="0"
-                onclick="abrirProducto('VR-001','Polera básica','Polera','Talla M','$5.000','Prenda en muy buen estado.',['imagenes/VR-001-1.jpg','imagenes/VR-001-2.jpg','imagenes/VR-001-3.jpg','imagenes/VR-001-4.jpg'])"
-                onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault(); this.click();}">
-                <div class="imagen-producto">
-                    <img src="imagenes/VR-001-1.jpg" alt="Polera básica">
-                </div>
-
-                <div class="info-producto">
-                    <p class="categoria-producto">POLERA</p>
-                    <h3>Polera básica</h3>
-                    <p class="descripcion-producto">Prenda en muy buen estado.</p>
-
-                    <div class="datos-producto">
-                        <span>Talla M</span>
-                        <strong>$5.000</strong>
-                    </div>
-
-                    <button class="boton-producto"
-                        onclick="event.stopPropagation(); abrirProducto(
-                            'VR-001',
-                            'Polera básica',
-                            'Polera',
-                            'Talla M',
-                            '$5.000',
-                            'Prenda en muy buen estado.',
-                            ['imagenes/VR-001-1.jpg','imagenes/VR-001-2.jpg','imagenes/VR-001-3.jpg','imagenes/VR-001-4.jpg']
-                        )">
-                        VER PRENDA
-                    </button>
-                </div>
-            </article>
-
-            <!-- PRENDA 2 -->
-            <article class="producto" data-categoria="pantalon" role="button" tabindex="0"
-                onclick="abrirProducto('VR-002','Pantalón casual','Pantalón','Talla 40','$8.000','En excelente estado y listo para usar.')"
-                onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault(); this.click();}">
-                <div class="imagen-producto">
-                    <span aria-hidden="true">👖</span>
-                </div>
-
-                <div class="info-producto">
-                    <p class="categoria-producto">PANTALÓN</p>
-                    <h3>Pantalón casual</h3>
-                    <p class="descripcion-producto">En excelente estado y listo para usar.</p>
-
-                    <div class="datos-producto">
-                        <span>Talla 40</span>
-                        <strong>$8.000</strong>
-                    </div>
-
-                    <button class="boton-producto"
-                        onclick="event.stopPropagation(); abrirProducto(
-                            'VR-002',
-                            'Pantalón casual',
-                            'Pantalón',
-                            'Talla 40',
-                            '$8.000',
-                            'En excelente estado y listo para usar.'
-                        )">
-                        VER PRENDA
-                    </button>
-                </div>
-            </article>
-
-            <!-- PRENDA 3 -->
-            <article class="producto" data-categoria="chaqueta" role="button" tabindex="0"
-                onclick="abrirProducto('VR-003','Chaqueta casual','Chaqueta','Talla L','$10.000','Prenda única en muy buen estado.')"
-                onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault(); this.click();}">
-                <div class="imagen-producto">
-                    <span aria-hidden="true">🧥</span>
-                </div>
-
-                <div class="info-producto">
-                    <p class="categoria-producto">CHAQUETA</p>
-                    <h3>Chaqueta casual</h3>
-                    <p class="descripcion-producto">Prenda única en muy buen estado.</p>
-
-                    <div class="datos-producto">
-                        <span>Talla L</span>
-                        <strong>$10.000</strong>
-                    </div>
-
-                    <button class="boton-producto"
-                        onclick="event.stopPropagation(); abrirProducto(
-                            'VR-003',
-                            'Chaqueta casual',
-                            'Chaqueta',
-                            'Talla L',
-                            '$10.000',
-                            'Prenda única en muy buen estado.'
-                        )">
-                        VER PRENDA
-                    </button>
-                </div>
-            </article>
-
-            <!-- PRENDA 4 -->
-            <article class="producto" data-categoria="polera" role="button" tabindex="0"
-                onclick="abrirProducto('VR-004','Polera deportiva','Polera','L','$4.000','Prenda en muy buen estado.')"
-                onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault(); this.click();}">
-                <div class="imagen-producto">
-                    <span aria-hidden="true">👕</span>
-                </div>
-
-                <div class="info-producto">
-                    <p class="categoria-producto">POLERA</p>
-                    <h3>Polera deportiva</h3>
-                    <p class="descripcion-producto">Prenda en muy buen estado.</p>
-
-                    <div class="datos-producto">
-                        <span>Talla L</span>
-                        <strong>$4.000</strong>
-                    </div>
-
-                    <button class="boton-producto"
-                        onclick="event.stopPropagation(); abrirProducto(
-                            'VR-004',
-                            'Polera deportiva',
-                            'Polera',
-                            'L',
-                            '$4.000',
-                            'Prenda en muy buen estado.'
-                        )">
-                        VER PRENDA
-                    </button>
-                </div>
-            </article>
-
-        </div>
+        <!--
+            LAS PRENDAS SE CARGAN AUTOMÁTICAMENTE DESDE script.js
+            Para cambiar nombre, talla, precio, descripción o fotos,
+            solo modifica el objeto correspondiente en la lista PRODUCTOS.
+        -->
+        <div id="productos" class="productos"></div>
     </section>
 
     <!-- =========================
