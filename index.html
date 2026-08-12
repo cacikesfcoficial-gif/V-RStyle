@@ -35,16 +35,17 @@
 
         <div class="hero-video-panel">
             <video class="hero-video"
-                   autoplay
-                   muted
-                   loop
-                   playsinline
-                   webkit-playsinline
-                   preload="auto"
-                   aria-label="Presentación V&R ReStyle">
-                <source src="videos/VR-ReStyle-presentacion-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
-                <source src="videos/VR-ReStyle-presentacion-desktop.mp4" type="video/mp4">
-            </video>
+               id="hero-video"
+               autoplay
+               muted
+               defaultmuted
+               loop
+               playsinline
+               webkit-playsinline
+               preload="auto"
+               disablepictureinpicture
+               controlslist="nodownload nofullscreen noremoteplayback"
+               aria-label="Presentación V&R ReStyle"></video>
         </div>
 
         <div class="hero-contenido">

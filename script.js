@@ -303,40 +303,59 @@ function aplicarFiltro() {
 // AUTOPLAY ROBUSTO DEL VIDEO
 // =========================================================
 function iniciarVideoHero() {
-    const video = document.querySelector(".hero-video");
+    const video = document.getElementById("hero-video");
     if (!video) return;
+
+    // Elegimos explícitamente el archivo según el dispositivo.
+    // Esto evita que algunos navegadores móviles ignoren el atributo
+    // media de <source> y terminen mostrando el video equivocado.
+    const esMovil = window.matchMedia("(max-width: 768px)").matches;
+    const fuente = esMovil
+        ? "videos/VR-ReStyle-presentacion-mobile.mp4"
+        : "videos/VR-ReStyle-presentacion-desktop.mp4";
 
     video.muted = true;
     video.defaultMuted = true;
-    video.setAttribute("muted", "");
-    video.setAttribute("playsinline", "");
-    video.setAttribute("autoplay", "");
+    video.autoplay = true;
+    video.loop = true;
+    video.playsInline = true;
+
+    // Reiniciamos la fuente solamente si es necesario.
+    if (!video.src || !video.src.endsWith(fuente)) {
+        video.src = fuente;
+        video.load();
+    }
 
     const reproducir = () => {
+        video.muted = true;
+        video.defaultMuted = true;
+
         const promesa = video.play();
+
         if (promesa && typeof promesa.catch === "function") {
             promesa.catch(() => {
-                // Algunos navegadores móviles bloquean el primer intento.
-                // Volvemos a intentarlo cuando el video tenga datos o cuando
-                // el usuario interactúe con la página.
+                // Se reintenta automáticamente cuando el navegador
+                // permita la reproducción.
             });
         }
     };
 
-    if (video.readyState >= 2) reproducir();
-    video.addEventListener("loadeddata", reproducir, { once: true });
-    video.addEventListener("canplay", reproducir, { once: true });
+    video.addEventListener("loadeddata", reproducir);
+    video.addEventListener("canplay", reproducir);
+    video.addEventListener("loadedmetadata", reproducir);
+
+    reproducir();
+
+    // Reintento al volver a la pestaña.
     document.addEventListener("visibilitychange", () => {
-        if (!document.hidden && video.paused) reproducir();
+        if (!document.hidden && video.paused) {
+            reproducir();
+        }
     });
 
-    ["touchstart", "pointerdown", "click"].forEach(evento => {
-        document.addEventListener(evento, () => {
-            if (video.paused) reproducir();
-        }, { once: true, passive: true });
-    });
+    // Último respaldo para navegadores móviles que retrasan el autoplay.
+    window.addEventListener("pageshow", reproducir);
 }
-
 function iniciarVRestyle() {
     renderizarProductos();
     iniciarVideoHero();
