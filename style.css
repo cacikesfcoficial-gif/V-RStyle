@@ -467,3 +467,21 @@ footer > p { color:#aaa; font-size:12px; text-align:center; }
         cursor: default;
     }
 }
+
+@media (max-width: 900px) {
+    .producto-imagen {
+        touch-action: none !important;
+        overflow: hidden !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
+    }
+
+    #producto-imagen-principal {
+        touch-action: none !important;
+        -webkit-user-drag: none !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        transition: transform .12s ease-out;
+        will-change: transform;
+    }
+}
