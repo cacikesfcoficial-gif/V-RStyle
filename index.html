@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V&R ReStyle | Segunda mano, primera Calidad</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260812-2">
 </head>
 
 <body>
@@ -39,9 +39,11 @@
                    muted
                    loop
                    playsinline
+                   webkit-playsinline
                    preload="auto"
                    aria-label="Presentación V&R ReStyle">
-                <source src="videos/VR-ReStyle-presentacion.mp4" type="video/mp4">
+                <source src="videos/VR-ReStyle-presentacion-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
+                <source src="videos/VR-ReStyle-presentacion-desktop.mp4" type="video/mp4">
             </video>
         </div>
 
@@ -103,11 +105,11 @@
         </div>
 
         <div class="filtros">
-            <button class="filtro activo" onclick="filtrarProductos('todas', this)">TODAS</button>
-            <button class="filtro" onclick="filtrarProductos('polera', this)">POLERAS</button>
-            <button class="filtro" onclick="filtrarProductos('pantalon', this)">PANTALONES</button>
-            <button class="filtro" onclick="filtrarProductos('chaqueta', this)">CHAQUETAS</button>
-            <button class="filtro" onclick="filtrarProductos('accesorio', this)">ACCESORIOS</button>
+            <button class="filtro activo" data-categoria="todas" onclick="filtrarProductos('todas', this)">TODAS</button>
+            <button class="filtro" data-categoria="polera" onclick="filtrarProductos('polera', this)">POLERAS</button>
+            <button class="filtro" data-categoria="pantalon" onclick="filtrarProductos('pantalon', this)">PANTALONES</button>
+            <button class="filtro" data-categoria="chaqueta" onclick="filtrarProductos('chaqueta', this)">CHAQUETAS</button>
+            <button class="filtro" data-categoria="accesorio" onclick="filtrarProductos('accesorio', this)">ACCESORIOS</button>
         </div>
 
         <!--
@@ -258,6 +260,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260812-2"></script>
 </body>
 </html>

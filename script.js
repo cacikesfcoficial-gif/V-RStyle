@@ -1,27 +1,12 @@
 // =========================================================
-// V&R RESTYLE — ADMINISTRACIÓN RÁPIDA DE PRENDAS
+// V&R RESTYLE — PRODUCTOS + FILTROS + GALERÍA + AUTOPLAY
 // =========================================================
 
 const NUMERO_WHATSAPP = "56975379705";
 
-/*
-   =========================================================
-   EDITA LAS PRENDAS SOLO AQUÍ
-   =========================================================
-
-   Para cambiar una prenda modifica:
-   nombre
-   genero       -> "mujer", "hombre" o "nino"
-   categoria    -> "polera", "pantalon", "chaqueta", "accesorio"
-   talla
-   precio
-   descripcion
-   imagenes
-
-   Para agregar una nueva prenda, copia un objeto completo
-   y cambia el código.
-*/
-
+// =========================================================
+// EDITA LAS PRENDAS SOLO AQUÍ
+// =========================================================
 const PRODUCTOS = [
     {
         codigo: "VR-001",
@@ -97,12 +82,10 @@ function nombreCategoria(categoria) {
 function imagenPrincipal(producto) {
     if (Array.isArray(producto.imagenes) && producto.imagenes.length > 0) {
         return `
-            <img
-                src="${escaparHTML(producto.imagenes[0])}"
-                alt="${escaparHTML(producto.nombre)}"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            >
+            <img src="${escaparHTML(producto.imagenes[0])}"
+                 alt="${escaparHTML(producto.nombre)}"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <span class="imagen-fallback" style="display:none" aria-hidden="true">✦</span>
         `;
     }
@@ -119,17 +102,12 @@ function imagenPrincipal(producto) {
 
 function renderizarProductos() {
     const contenedor = document.getElementById("productos");
-
-    if (!contenedor) {
-        console.error("V&R ReStyle: no existe #productos en index.html");
-        return;
-    }
+    if (!contenedor) return;
 
     contenedor.innerHTML = "";
 
     PRODUCTOS.forEach((producto, indice) => {
         const tarjeta = document.createElement("article");
-
         tarjeta.className = "producto";
         tarjeta.dataset.categoria = producto.categoria;
         tarjeta.dataset.genero = producto.genero || "";
@@ -140,36 +118,27 @@ function renderizarProductos() {
             <div class="imagen-producto">
                 ${imagenPrincipal(producto)}
             </div>
-
             <div class="info-producto">
                 <p class="categoria-producto">${escaparHTML(nombreCategoria(producto.categoria))}</p>
                 <h3>${escaparHTML(producto.nombre)}</h3>
                 <p class="descripcion-producto">${escaparHTML(producto.descripcion)}</p>
-
                 <div class="datos-producto">
                     <span>Talla ${escaparHTML(producto.talla)}</span>
                     <strong>${escaparHTML(producto.precio)}</strong>
                 </div>
-
-                <button type="button" class="boton-producto">
-                    VER PRENDA
-                </button>
+                <button type="button" class="boton-producto">VER PRENDA</button>
             </div>
         `;
 
-        tarjeta.addEventListener("click", function () {
-            abrirProductoPorIndice(indice);
-        });
-
-        tarjeta.addEventListener("keydown", function (evento) {
+        tarjeta.addEventListener("click", () => abrirProductoPorIndice(indice));
+        tarjeta.addEventListener("keydown", (evento) => {
             if (evento.key === "Enter" || evento.key === " ") {
                 evento.preventDefault();
                 abrirProductoPorIndice(indice);
             }
         });
 
-        const boton = tarjeta.querySelector(".boton-producto");
-        boton.addEventListener("click", function (evento) {
+        tarjeta.querySelector(".boton-producto").addEventListener("click", (evento) => {
             evento.stopPropagation();
             abrirProductoPorIndice(indice);
         });
@@ -196,37 +165,26 @@ function abrirProductoPorIndice(indice) {
 }
 
 function abrirProducto(codigo, nombre, categoria, talla, precio, descripcion, imagenes = []) {
-    const elementos = {
-        codigo: document.getElementById("producto-codigo"),
-        nombre: document.getElementById("producto-nombre"),
-        categoria: document.getElementById("producto-categoria"),
-        talla: document.getElementById("producto-talla"),
-        precio: document.getElementById("producto-precio"),
-        descripcion: document.getElementById("producto-descripcion"),
-        ventana: document.getElementById("ventana-producto"),
-        whatsapp: document.getElementById("boton-whatsapp")
-    };
+    const ventana = document.getElementById("ventana-producto");
+    if (!ventana) return;
 
-    if (!elementos.ventana) return;
-
-    elementos.codigo.textContent = "CÓDIGO " + codigo;
-    elementos.nombre.textContent = nombre;
-    elementos.categoria.textContent = categoria.toUpperCase();
-    elementos.talla.textContent = talla;
-    elementos.precio.textContent = precio;
-    elementos.descripcion.textContent = descripcion;
+    document.getElementById("producto-codigo").textContent = "CÓDIGO " + codigo;
+    document.getElementById("producto-nombre").textContent = nombre;
+    document.getElementById("producto-categoria").textContent = categoria.toUpperCase();
+    document.getElementById("producto-talla").textContent = talla;
+    document.getElementById("producto-precio").textContent = precio;
+    document.getElementById("producto-descripcion").textContent = descripcion;
 
     imagenesProducto = Array.isArray(imagenes) ? imagenes : [];
     indiceImagen = 0;
-
     actualizarImagen();
 
-    elementos.ventana.classList.add("mostrar");
+    ventana.classList.add("mostrar");
+    document.body.style.overflow = "hidden";
 
-    if (elementos.whatsapp) {
-        elementos.whatsapp.onclick = function () {
-            interesarPrenda(codigo, nombre, categoria, talla, precio);
-        };
+    const whatsapp = document.getElementById("boton-whatsapp");
+    if (whatsapp) {
+        whatsapp.onclick = () => interesarPrenda(codigo, nombre, categoria, talla, precio);
     }
 }
 
@@ -235,7 +193,6 @@ function actualizarImagen() {
     const anterior = document.querySelector(".flecha-imagen.izquierda");
     const siguiente = document.querySelector(".flecha-imagen.derecha");
     const indicadores = document.getElementById("indicadores-imagenes");
-
     if (!imagen || !anterior || !siguiente || !indicadores) return;
 
     if (!imagenesProducto.length) {
@@ -248,26 +205,24 @@ function actualizarImagen() {
     }
 
     imagen.src = imagenesProducto[indiceImagen];
-    imagen.alt = "Fotografía de " + (document.getElementById("producto-nombre")?.textContent || "la prenda");
+    const nombre = document.getElementById("producto-nombre")?.textContent || "la prenda";
+    imagen.alt = "Fotografía de " + nombre;
 
     const varias = imagenesProducto.length > 1;
     anterior.style.display = varias ? "flex" : "none";
     siguiente.style.display = varias ? "flex" : "none";
-
     indicadores.innerHTML = "";
 
     if (varias) {
-        imagenesProducto.forEach(function (_, i) {
+        imagenesProducto.forEach((_, i) => {
             const indicador = document.createElement("button");
             indicador.type = "button";
             indicador.className = "indicador" + (i === indiceImagen ? " activo" : "");
             indicador.setAttribute("aria-label", "Ver imagen " + (i + 1));
-
-            indicador.addEventListener("click", function (evento) {
+            indicador.addEventListener("click", (evento) => {
                 evento.stopPropagation();
                 irAImagen(i);
             });
-
             indicadores.appendChild(indicador);
         });
     }
@@ -275,23 +230,14 @@ function actualizarImagen() {
 
 function cambiarImagen(direccion) {
     if (imagenesProducto.length <= 1) return;
-
     indiceImagen += direccion;
-
-    if (indiceImagen < 0) {
-        indiceImagen = imagenesProducto.length - 1;
-    }
-
-    if (indiceImagen >= imagenesProducto.length) {
-        indiceImagen = 0;
-    }
-
+    if (indiceImagen < 0) indiceImagen = imagenesProducto.length - 1;
+    if (indiceImagen >= imagenesProducto.length) indiceImagen = 0;
     actualizarImagen();
 }
 
 function irAImagen(indice) {
     if (indice < 0 || indice >= imagenesProducto.length) return;
-
     indiceImagen = indice;
     actualizarImagen();
 }
@@ -307,125 +253,104 @@ function interesarPrenda(codigo, nombre, categoria, talla, precio) {
         "Precio: " + precio + "\n\n" +
         "Quisiera consultar por la compra.";
 
-    const enlace =
-        "https://wa.me/" +
-        NUMERO_WHATSAPP +
-        "?text=" +
-        encodeURIComponent(mensaje);
-
-    window.open(enlace, "_blank", "noopener,noreferrer");
+    window.open(
+        "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(mensaje),
+        "_blank"
+    );
 }
 
 function cerrarProducto() {
     const ventana = document.getElementById("ventana-producto");
-    if (ventana) {
-        ventana.classList.remove("mostrar");
-    }
+    if (ventana) ventana.classList.remove("mostrar");
+    document.body.style.overflow = "";
 }
 
 function filtrarGenero(genero, boton) {
     generoActual = genero;
-
-    document.querySelectorAll(".genero-boton").forEach(function (btn) {
-        btn.classList.remove("activo");
-    });
-
+    document.querySelectorAll(".genero-boton").forEach(btn => btn.classList.remove("activo"));
     if (boton) boton.classList.add("activo");
 
     categoriaActual = "todas";
-
-    document.querySelectorAll(".filtro").forEach(function (btn) {
-        btn.classList.remove("activo");
-    });
-
-    const botonTodas = document.querySelector('.filtro[onclick*="filtrarProductos(\'todas\'"]');
-    if (botonTodas) botonTodas.classList.add("activo");
-
+    document.querySelectorAll(".filtro").forEach(btn => btn.classList.remove("activo"));
+    const todas = document.querySelector('.filtro[data-categoria="todas"]');
+    if (todas) todas.classList.add("activo");
     aplicarFiltro();
 }
 
 function filtrarProductos(categoria, boton) {
     categoriaActual = categoria;
-
-    document.querySelectorAll(".filtro").forEach(function (btn) {
-        btn.classList.remove("activo");
-    });
-
+    document.querySelectorAll(".filtro").forEach(btn => btn.classList.remove("activo"));
     if (boton) boton.classList.add("activo");
-
     aplicarFiltro();
 }
 
 function aplicarFiltro() {
-    document.querySelectorAll(".producto").forEach(function (producto) {
-        const categoriaProducto = producto.dataset.categoria;
-        const generoProducto = producto.dataset.genero;
-
-        const coincideGenero =
-            generoActual === "todas" || generoProducto === generoActual;
-
-        const coincideCategoria =
-            categoriaActual === "todas" || categoriaProducto === categoriaActual;
-
-        producto.style.display =
-            coincideGenero && coincideCategoria ? "" : "none";
+    document.querySelectorAll(".producto").forEach(producto => {
+        const coincideGenero = generoActual === "todas" || producto.dataset.genero === generoActual;
+        const coincideCategoria = categoriaActual === "todas" || producto.dataset.categoria === categoriaActual;
+        producto.style.display = coincideGenero && coincideCategoria ? "" : "none";
     });
 
     const titulo = document.getElementById("filtro-genero-titulo");
-
     if (titulo) {
-        const nombresGenero = {
-            todas: "TODAS LAS PRENDAS",
-            mujer: "PRENDAS DE MUJER",
-            hombre: "PRENDAS DE HOMBRE",
-            nino: "PRENDAS DE NIÑO"
-        };
-
-        const nombresCategoria = {
-            todas: "",
-            polera: " · POLERAS",
-            pantalon: " · PANTALONES",
-            chaqueta: " · CHAQUETAS",
-            accesorio: " · ACCESORIOS"
-        };
-
-        titulo.textContent =
-            "MOSTRANDO " +
-            (nombresGenero[generoActual] || nombresGenero.todas) +
-            (nombresCategoria[categoriaActual] || "");
+        const nombresGenero = { todas:"TODAS LAS PRENDAS", mujer:"PRENDAS DE MUJER", hombre:"PRENDAS DE HOMBRE", nino:"PRENDAS DE NIÑO" };
+        const nombresCategoria = { todas:"", polera:" · POLERAS", pantalon:" · PANTALONES", chaqueta:" · CHAQUETAS", accesorio:" · ACCESORIOS" };
+        titulo.textContent = "MOSTRANDO " + nombresGenero[generoActual] + (nombresCategoria[categoriaActual] || "");
     }
+}
+
+// =========================================================
+// AUTOPLAY ROBUSTO DEL VIDEO
+// =========================================================
+function iniciarVideoHero() {
+    const video = document.querySelector(".hero-video");
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("autoplay", "");
+
+    const reproducir = () => {
+        const promesa = video.play();
+        if (promesa && typeof promesa.catch === "function") {
+            promesa.catch(() => {
+                // Algunos navegadores móviles bloquean el primer intento.
+                // Volvemos a intentarlo cuando el video tenga datos o cuando
+                // el usuario interactúe con la página.
+            });
+        }
+    };
+
+    if (video.readyState >= 2) reproducir();
+    video.addEventListener("loadeddata", reproducir, { once: true });
+    video.addEventListener("canplay", reproducir, { once: true });
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden && video.paused) reproducir();
+    });
+
+    ["touchstart", "pointerdown", "click"].forEach(evento => {
+        document.addEventListener(evento, () => {
+            if (video.paused) reproducir();
+        }, { once: true, passive: true });
+    });
 }
 
 function iniciarVRestyle() {
     renderizarProductos();
+    iniciarVideoHero();
 
-    document.addEventListener("keydown", function (evento) {
-        if (evento.key === "Escape") {
-            cerrarProducto();
-        }
-
-        if (
-            evento.key === "ArrowRight" &&
-            document.getElementById("ventana-producto")?.classList.contains("mostrar")
-        ) {
-            cambiarImagen(1);
-        }
-
-        if (
-            evento.key === "ArrowLeft" &&
-            document.getElementById("ventana-producto")?.classList.contains("mostrar")
-        ) {
-            cambiarImagen(-1);
-        }
+    document.addEventListener("keydown", evento => {
+        if (evento.key === "Escape") cerrarProducto();
+        if (evento.key === "ArrowRight" && document.getElementById("ventana-producto")?.classList.contains("mostrar")) cambiarImagen(1);
+        if (evento.key === "ArrowLeft" && document.getElementById("ventana-producto")?.classList.contains("mostrar")) cambiarImagen(-1);
     });
 
     const ventana = document.getElementById("ventana-producto");
-
     if (ventana) {
-        ventana.addEventListener("click", function (evento) {
-            if (evento.target === ventana) {
-                cerrarProducto();
-            }
+        ventana.addEventListener("click", evento => {
+            if (evento.target === ventana) cerrarProducto();
         });
     }
 }
